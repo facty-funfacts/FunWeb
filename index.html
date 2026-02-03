@@ -5,44 +5,160 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FunWeb Playground</title>
 <style>
-  body {font-family: 'Segoe UI', sans-serif; margin:0; background:#f0f0f0; color:#222; transition:0.3s;}
-  header {background:#ff5e57; color:white; padding:20px; text-align:center;}
-  header h1 {margin:0; font-size:2.5rem;}
-  nav {display:flex; justify-content:center; flex-wrap:wrap; background:#ff7b72;}
-  nav button {margin:5px; padding:10px 20px; border:none; border-radius:10px; background:#fff; color:#ff5e57; cursor:pointer; transition:0.3s;}
-  nav button:hover {background:#ffd1d1;}
-  section {padding:50px; border-bottom:1px solid #ddd; text-align:center;}
-  section h3 {font-size:2rem; margin-bottom:20px;}
-  button {cursor:pointer; transition:0.3s;}
-  .dark-mode {background:#222; color:#f0f0f0;}
-  .dark-mode nav {background:#333;}
-  .dark-mode nav button {background:#555; color:#fff;}
-  /* TO-DO */
-  #todoList li {list-style:none; margin:5px 0; padding:5px; background:#ffd1d1; border-radius:5px; display:flex; justify-content:space-between;}
-  #todoList li button {background:red; color:#fff; border:none; border-radius:5px; padding:0 5px; cursor:pointer;}
-  /* PET */
-  .pet-section {padding:50px; background:rgba(255,192,203,0.05);}
-  .pet-container img {width:150px; display:block; margin:0 auto 20px; transition:transform 0.3s ease;}
-  .pet-actions button {padding:10px 20px; margin:5px; border:none; border-radius:10px; background:#ff5e57; color:#fff;}
-  .pet-actions button:hover {background:#ff7b72;}
-  .pet-mood {margin-top:15px; font-size:1.3rem; font-weight:bold;}
-  /* COLOR MIXER */
-  #colorPreview {width:100px; height:100px; margin:10px auto; border:1px solid #222; border-radius:10px;}
-  /* QUIZ */
-  #quizOptions button {margin:5px; padding:5px 10px; border:none; border-radius:5px; background:#ff5e57; color:#fff;}
-  #quizOptions button:hover {background:#ff7b72;}
-  /* MEME */
-  #memeImage {width:250px; border-radius:10px; margin-top:10px;}
-  /* SOUNDBOARD */
-  .soundboard button {margin:5px; padding:10px 15px; background:#ff5e57; color:#fff; border:none; border-radius:10px;}
-  .soundboard button:hover {background:#ff7b72;}
+/* ================= BODY & GENERAL ================= */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  transition: 0.5s;
+  background: #f0f0f0;
+  color: #222;
+}
+h1,h3 { margin: 0; }
+button { cursor: pointer; transition: 0.3s; }
+
+/* ================= HEADER & NAV ================= */
+header {
+  background: linear-gradient(90deg,#ff7b72,#ff5e57);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 90px;
+  z-index: 99;
+}
+nav button {
+  margin: 5px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 15px;
+  background: #ff5e57;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+nav button:hover { transform: translateY(-2px); }
+
+/* ================= THEMES ================= */
+body.light { background: #f0f0f0; color: #222; }
+body.light nav { background: #fff; }
+body.light nav button { background: #ff5e57; color:white; }
+
+body.dark { background: #121212; color: #eee; }
+body.dark nav { background: #222; }
+body.dark nav button { background: #ff5555; color:white; }
+
+body.neon { background: #000; color:#0ff; text-shadow: 0 0 2px #0ff;}
+body.neon nav { background: #111; }
+body.neon nav button { background: #0ff; color:#000; box-shadow:0 0 10px #0ff;}
+
+body.nature { background: #e0f2e9; color:#2b3e2b;}
+body.nature nav { background: #c8e6c9; }
+body.nature nav button { background: #66bb6a; color:white; }
+
+/* ================= SECTIONS ================= */
+section {
+  padding: 50px 20px;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.8);
+  transition: 0.5s;
+}
+body.dark section { background: rgba(30,30,30,0.8);}
+body.neon section { background: rgba(0,0,0,0.9); }
+body.nature section { background: rgba(240,255,240,0.9); }
+section h3 { font-size: 2rem; margin-bottom:20px; text-align:center; }
+
+/* ================= INPUTS & LISTS ================= */
+input[type=text] {
+  padding: 10px; border-radius: 10px; border: 1px solid #ccc; width: 200px; margin-right: 10px;
+}
+ul { padding-left:0; }
+#todoList li {
+  list-style:none;
+  margin:8px 0;
+  padding:8px 10px;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: #ffdad4;
+}
+#todoList li button {
+  background:red; color:white; border:none; border-radius:5px; padding:2px 6px;
+}
+
+/* ================= PET ================= */
+.pet-container img {
+  width:150px;
+  display:block;
+  margin:0 auto 20px;
+  transition: transform 0.3s ease;
+}
+.pet-actions button {
+  padding:10px 20px;
+  margin:5px;
+  border:none;
+  border-radius:12px;
+  background:#ff5e57;
+  color:white;
+  font-weight:bold;
+  box-shadow:0 3px 6px rgba(0,0,0,0.2);
+}
+.pet-actions button:hover { transform:translateY(-3px); }
+.pet-mood { margin-top:15px; font-size:1.4rem; font-weight:bold; }
+
+/* ================= COLOR MIXER ================= */
+#colorPreview { width:100px; height:100px; margin:10px auto; border-radius:15px; border:2px solid #222; }
+
+/* ================= QUIZ ================= */
+#quizOptions button { margin:5px; padding:5px 10px; border-radius:8px; border:none; background:#ff5e57; color:white; font-weight:bold; }
+#quizOptions button:hover { transform:translateY(-2px); }
+
+/* ================= RPS ================= */
+#rps button { margin:5px; padding:10px 20px; border-radius:10px; border:none; background:#ff5e57; color:white; font-weight:bold; }
+#rps button:hover { transform:translateY(-2px); }
+
+/* ================= MEME ================= */
+#memeImage { width:250px; border-radius:15px; margin-top:10px; }
+
+/* ================= SOUND ================= */
+.soundboard button { margin:5px; padding:10px 18px; border:none; border-radius:12px; background:#ff5e57; color:white; font-weight:bold; }
+.soundboard button:hover { transform:translateY(-2px); }
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:700px){
+  nav { flex-direction: column; }
+  section { margin:20px 10px; }
+}
 </style>
 </head>
-<body>
+<body class="light">
 
 <header>
   <h1>FunWeb Playground</h1>
-  <button onclick="toggleDarkMode()">Toggle Dark Mode 🌙</button>
+  <div>
+    <button onclick="setTheme('light')">Light 🌞</button>
+    <button onclick="setTheme('dark')">Dark 🌙</button>
+    <button onclick="setTheme('neon')">Neon ⚡</button>
+    <button onclick="setTheme('nature')">Nature 🍃</button>
+  </div>
 </header>
 
 <nav>
@@ -58,7 +174,7 @@
   <button onclick="scrollToSection('pet')">Your Pet</button>
 </nav>
 
-<!-- TO-DO -->
+<!-- ================= TO-DO ================= -->
 <section id="todo">
   <h3>To-Do List</h3>
   <input id="todoInput" type="text" placeholder="Add task">
@@ -66,22 +182,22 @@
   <ul id="todoList"></ul>
 </section>
 
-<!-- QUOTES -->
+<!-- ================= QUOTES ================= -->
 <section id="quotes">
   <h3>Random Quote</h3>
-  <p id="quoteText">"Click below for a new quote!"</p>
+  <p id="quoteText">Click below for a new quote!</p>
   <p id="quoteAuthor"></p>
   <button onclick="newQuote()">New Quote</button>
 </section>
 
-<!-- FUN FACTS -->
+<!-- ================= FUN FACTS ================= -->
 <section id="funfacts">
   <h3>Fun Fact</h3>
   <p id="funfactText">Click below to learn something new!</p>
   <button onclick="newFunFact()">New Fun Fact</button>
 </section>
 
-<!-- QUIZ -->
+<!-- ================= QUIZ ================= -->
 <section id="quiz">
   <h3>Mini Quiz</h3>
   <p id="quizQuestion"></p>
@@ -90,7 +206,7 @@
   <button onclick="nextQuiz()">Next Question</button>
 </section>
 
-<!-- RPS GAME -->
+<!-- ================= RPS ================= -->
 <section id="rps">
   <h3>Rock Paper Scissors</h3>
   <button onclick="playRPS('Rock')">Rock</button>
@@ -99,7 +215,7 @@
   <p id="rpsResult"></p>
 </section>
 
-<!-- COLOR MIXER -->
+<!-- ================= COLOR MIXER ================= -->
 <section id="colormixer">
   <h3>Color Mixer</h3>
   <label>R<input type="range" min="0" max="255" id="rRange"></label>
@@ -108,21 +224,21 @@
   <div id="colorPreview"></div>
 </section>
 
-<!-- MEME GENERATOR -->
+<!-- ================= MEME ================= -->
 <section id="meme">
   <h3>Meme Generator</h3>
   <button onclick="newMeme()">New Meme</button>
   <img id="memeImage" src="" alt="Meme">
 </section>
 
-<!-- TIP -->
+<!-- ================= TIP ================= -->
 <section id="tip">
   <h3>Tip of the Day</h3>
   <p id="tipText">Click below for a tip!</p>
   <button onclick="newTip()">New Tip</button>
 </section>
 
-<!-- MUSIC -->
+<!-- ================= MUSIC ================= -->
 <section id="music">
   <h3>Soundboard</h3>
   <div class="soundboard">
@@ -132,7 +248,7 @@
   </div>
 </section>
 
-<!-- PET SECTION -->
+<!-- ================= YOUR PET ================= -->
 <section class="pet-section" id="pet">
   <h3>Your Pet</h3>
   <div class="pet-container">
@@ -154,15 +270,96 @@
 </section>
 
 <script>
-// ====== SCROLL FUNCTION ======
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+// ================== THEME SWITCH ==================
+function setTheme(theme){ document.body.className = theme; }
+
+// ================== SCROLL FUNCTION ==================
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+// ================== TO-DO ==================
+function addTodo(){
+  const input=document.getElementById('todoInput');
+  const val=input.value.trim();
+  if(!val) return;
+  const li=document.createElement('li');
+  li.innerHTML=`${val} <button onclick="this.parentElement.remove()">x</button>`;
+  document.getElementById('todoList').appendChild(li);
+  input.value='';
 }
 
-// ====== DARK MODE ======
-function toggleDarkMode(){
-  document.body.classList.toggle('dark-mode');
+// ================== QUOTES ==================
+const quotes=[
+  {text:"The best way to predict the future is to create it.",author:"Peter Drucker"},
+  {text:"Stay hungry, stay foolish.",author:"Steve Jobs"},
+  {text:"Life is what happens when you're busy making other plans.",author:"John Lennon"},
+  {text:"Believe you can and you're halfway there.",author:"Theodore Roosevelt"},
+  {text:"Do one thing every day that scares you.",author:"Eleanor Roosevelt"},
+  {text:"Strive not to be a success, but rather to be of value.",author:"Albert Einstein"}
+];
+function newQuote(){const q=quotes[Math.floor(Math.random()*quotes.length)];document.getElementById('quoteText').innerText=`"${q.text}"`;document.getElementById('quoteAuthor').innerText=`- ${q.author}`;}
+
+// ================== FUN FACTS ==================
+const funFacts=[
+  "Bananas are berries, but strawberries aren’t.",
+  "Honey never spoils.",
+  "Octopuses have three hearts.",
+  "A group of flamingos is called a 'flamboyance'.",
+  "Wombat poop is cube-shaped.",
+  "There are more stars in the universe than grains of sand on Earth."
+];
+function newFunFact(){document.getElementById('funfactText').innerText=funFacts[Math.floor(Math.random()*funFacts.length)];}
+
+// ================== QUIZ ==================
+const quizQuestions=[
+  {question:"What is the capital of France?",options:["Paris","London","Rome","Berlin"],answer:"Paris"},
+  {question:"Which planet is known as the Red Planet?",options:["Mars","Venus","Earth","Jupiter"],answer:"Mars"},
+  {question:"Who wrote 'Romeo and Juliet'?",options:["Shakespeare","Hemingway","Tolkien","Rowling"],answer:"Shakespeare"},
+  {question:"Which element has the chemical symbol 'O'?",options:["Oxygen","Gold","Osmium","Iron"],answer:"Oxygen"}
+];
+let currentQuiz=0;
+function loadQuiz(){const q=quizQuestions[currentQuiz];document.getElementById('quizQuestion').innerText=q.question;const optDiv=document.getElementById('quizOptions');optDiv.innerHTML='';q.options.forEach(opt=>{const btn=document.createElement('button');btn.innerText=opt;btn.onclick=()=>checkAnswer(opt);optDiv.appendChild(btn);});document.getElementById('quizAnswer').innerText='';}
+function checkAnswer(sel){const corr=quizQuestions[currentQuiz].answer;document.getElementById('quizAnswer').innerText=sel===corr?"✅ Correct!":`❌ Wrong! Correct: ${corr}`;}
+function nextQuiz(){currentQuiz=(currentQuiz+1)%quizQuestions.length;loadQuiz();}
+loadQuiz();
+
+// ================== RPS ==================
+function playRPS(user){
+  const choices=["Rock","Paper","Scissors"];
+  const comp=choices[Math.floor(Math.random()*choices.length)];
+  let res="";
+  if(user===comp) res="Draw!";
+  else if((user==="Rock"&&comp==="Scissors")||(user==="Paper"&&comp==="Rock")||(user==="Scissors"&&comp==="Paper")) res="You Win!";
+  else res="You Lose!";
+  document.getElementById('rpsResult').innerText=`You chose ${user}, Computer chose ${comp}. ${res}`;
 }
 
-// ====== TO-DO ======
-function add
+// ================== COLOR MIXER ==================
+const r=document.getElementById('rRange'); const g=document.getElementById('gRange'); const b=document.getElementById('bRange'); const colorPrev=document.getElementById('colorPreview');
+[r,g,b].forEach(c=>c.addEventListener('input',()=>{colorPrev.style.background=`rgb(${r.value},${g.value},${b.value})`;}));
+colorPrev.style.background=`rgb(${r.value},${g.value},${b.value})`;
+
+// ================== MEME ==================
+const memes=["https://i.imgflip.com/1bij.jpg","https://i.imgflip.com/26am.jpg","https://i.imgflip.com/2/30b1gx.jpg","https://i.imgflip.com/3si4.jpg"];
+function newMeme(){document.getElementById('memeImage').src=memes[Math.floor(Math.random()*memes.length)];}
+
+// ================== TIP ==================
+const tips=["Take short breaks every hour.","Drink more water.","Organize your workspace.","Exercise for at least 15 minutes.","Write down your goals for clarity.","Listen to music to boost creativity."];
+function newTip(){document.getElementById('tipText').innerText=tips[Math.floor(Math.random()*tips.length)];}
+
+// ================== MUSIC ==================
+const sounds={sound1:new Audio('https://www.soundjay.com/button/beep-07.wav'),sound2:new Audio('https://www.soundjay.com/button/beep-08b.wav'),sound3:new Audio('https://www.soundjay.com/button/button-3.wav')};
+function playSound(name){sounds[name]?.play();}
+
+// ================== PET ==================
+let pet={hunger:50,happiness:50,energy:50,cleanliness:50};
+function updatePet(){document.getElementById('hunger').innerText=pet.hunger;document.getElementById('happiness').innerText=pet.happiness;document.getElementById('energy').innerText=pet.energy;document.getElementById('cleanliness').innerText=pet.cleanliness;const mood=calcMood();document.getElementById('petMood').innerText=mood.text;document.getElementById('petImage').style.transform=mood.transform;}
+function calcMood(){const avg=(pet.hunger+pet.happiness+pet.energy+pet.cleanliness)/4;if(avg>75) return {text:"😍 Ecstatic!",transform:"scale(1.2)"}; if(avg>50)return{text:"😊 Happy!",transform:"scale(1)"}; if(avg>25)return{text:"😐 Okay...",transform:"scale(0.9)"}; return{text:"😢 Sad!",transform:"scale(0.8)"};}
+function feedPet(){pet.hunger=Math.min(100,pet.hunger+20);pet.energy=Math.min(100,pet.energy+10);updatePet();}
+function playPet(){pet.happiness=Math.min(100,pet.happiness+20);pet.energy=Math.max(0,pet.energy-10);pet.hunger=Math.max(0,pet.hunger-10);updatePet();}
+function sleepPet(){pet.energy=Math.min(100,pet.energy+30);pet.hunger=Math.max(0,pet.hunger-10);updatePet();}
+function cleanPet(){pet.cleanliness=Math.min(100,pet.cleanliness+30);updatePet();}
+updatePet();
+</script>
+
+</body>
+</html>

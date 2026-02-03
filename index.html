@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epic Fun Interactive Web</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  min-height: 100vh;
+  color: #333;
+  overflow-x: hidden;
+  transition: all 0.4s ease;
+}
+
+.dark-mode {
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #f0f0f0;
+}
+
+/* NAVBAR */
+nav {
+  width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.4s ease;
+}
+
+.dark-mode nav {
+  background: rgba(0,0,0,0.5);
+}
+
+nav h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li {
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav ul li:hover {
+  color: #ff5e57;
+}
+
+/* TOGGLE BUTTON */
+.toggle-btn {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: #ff5e57;
+  color: #fff;
+  border: none;
+  transition: all 0.3s;
+}
+
+.toggle-btn:hover {
+  background: #ff7b72;
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ff5e57;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.hero button {
+  padding: 15px 30px;
+  font-size: 1rem;
+  border: none;
+  background: #ff5e57;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero button:hover {
+  transform: scale(1.1);
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 50px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.2);
+}
+
+.gallery-item::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 15px;
+  font-size: 1rem;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* TODO LIST */
+.todo-section {
+  padding: 50px;
+  background: rgba(255, 94, 87, 0.05);
+}
+
+.todo-section h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.todo-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.todo-container input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.todo-container button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  background: #ff5e57;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.todo-container button:hover {
+  background: #ff7b72;
+}
+
+.todo-list {
+  margin-top: 20px;
+}
+
+.todo-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.todo-list li button {
+  background: transparent;
+  border: none;
+  color: #ff5e57;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* QUOTES SECTION */
+.quote-section {
+  padding: 50px;
+  text-align: center;
+  background: rgba(0, 123, 255, 0.05);
+}
+
+.quote-section h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.quote-author {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* CHAT BOT SECTION */
+.chat-section {
+  padding: 50px;
+  background: rgba(50,205,50,0.05);
+}
+
+.chat-section h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.chat-box {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-messages {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.chat-messages div {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user-msg {
+  background: #ff5e57;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.bot-msg {
+  background: #ddd;
+  align-self: flex-start;
+}
+
+.chat-input {
+  display: flex;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  border-radius: 0 10px 10px 0;
+  border: none;
+  background: #ff5e57;
+  color: #fff;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: #ff7b72;
+}
+
+/* FOOTER */
+footer {
+  padding: 30px;
+  text-align: center;
+  background: rgba(0,0,0,0.05);
+}
+
+footer p {
+  color: #333;
+}
+
+.dark-mode footer {
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav ul {
+    display: none;
+  }
+  .hero h2 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <h1>FunWeb</h1>
+  <ul>
+    <li onclick="scrollToSection('hero')">Home</li>
+    <li onclick="scrollToSection('gallery')">Gallery</li>
+    <li onclick="scrollToSection('todo')">To-Do</li>
+    <li onclick="scrollToSection('quote')">Quotes</li>
+    <li onclick="scrollToSection('chat')">Chat</li>
+  </ul>
+  <button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+</nav>
+
+<section class="hero" id="hero">
+  <h2>Welcome to FunWeb!</h2>
+  <p>This is an interactive website full of cool features: galleries, chat, to-do lists, random quotes, and more. Stay and explore!</p>
+  <button onclick="scrollToSection('gallery')">Explore Gallery</button>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="gallery-item" data-title="Sunset Beauty"><img src="https://picsum.photos/id/1015/500/300" alt="Sunset"></div>
+  <div class="gallery-item" data-title="Mountain View"><img src="https://picsum.photos/id/1016/500/300" alt="Mountain"></div>
+  <div class="gallery-item" data-title="City Lights"><img src="https://picsum.photos/id/1019/500/300" alt="City"></div>
+  <div class="gallery-item" data-title="Ocean Waves"><img src="https://picsum.photos/id/1020/500/300" alt="Ocean"></div>
+  <div class="gallery-item" data-title="Forest Path"><img src="https://picsum.photos/id/1024/500/300" alt="Forest"></div>
+  <div class="gallery-item" data-title="Desert Dunes"><img src="https://picsum.photos/id/1025/500/300" alt="Desert"></div>
+</section>
+
+<section class="todo-section" id="todo">
+  <h3>Interactive To-Do List</h3>
+  <div class="todo-container">
+    <div class="todo-input">
+      <input type="text" id="todoInput" placeholder="Add new task...">
+      <button onclick="addTodo()">Add</button>
+    </div>
+    <ul class="todo-list" id="todoList"></ul>
+  </div>
+</section>
+
+<section class="quote-section" id="quote">
+  <h3>Random Quotes</h3>
+  <div class="quote" id="quoteText">"Click the button for inspiration!"</div>
+  <div class="quote-author" id="quoteAuthor">- Unknown</div>
+  <button onclick="newQuote()">New Quote</button>
+</section>
+
+<section class="chat-section" id="chat">
+  <h3>Fun Chat</h3>
+  <div class="chat-box">
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Say something...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 FunWeb. All rights reserved.</p>
+</footer>
+
+<script>
+// SCROLL FUNCTION
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// DARK MODE
+function toggleDarkMode(){
+  document.body.classList.toggle('dark-mode');
+}
+
+// TODO LIST
+function addTodo(){
+  const input = document.getElementById('todoInput');
+  const value = input.value.trim();
+  if(value === '') return;
+  
+  const li = document.createElement('li');
+  li.innerHTML = `${value} <button onclick="removeTodo(this)">x</button>`;
+  
+  document.getElementById('todoList').appendChild(li);
+  input.value = '';
+}
+
+function removeTodo(btn){
+  btn.parentElement.remove();
+}
+
+// QUOTES
+const quotes = [
+  {text: "The best way to predict the future is to create it.", author:"Peter Drucker"},
+  {text: "Stay hungry, stay foolish.", author:"Steve Jobs"},
+  {text: "Life is what happens when you're busy making other plans.", author:"John Lennon"},
+  {text: "Believe you can and you're halfway there.", author:"Theodore Roosevelt"},
+  {text: "Do one thing every day that scares you.", author:"Eleanor Roosevelt"},
+  {text: "Strive not to be a success, but rather to be of value.", author:"Albert Einstein"}
+];
+
+function newQuote(){
+  const rand = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById('quoteText').innerText = `"${rand.text}"`;
+  document.getElementById('quoteAuthor').innerText = `- ${rand.author}`;
+}
+
+// CHAT SIMULATION
+function sendMessage(){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(text === '') return;
+  
+  const messages = document.getElementById('chatMessages');
+  const userMsg = document.createElement('div');
+  userMsg.classList.add('user-msg');
+  userMsg.innerText = text;
+  messages.appendChild(userMsg);
+  
+  // Simple bot reply
+  const botMsg = document.createElement('div');
+  botMsg.classList.add('bot-msg');
+  botMsg.innerText = generateBotReply(text);
+  messages.appendChild(botMsg);
+  
+  messages.scrollTop = messages.scrollHeight;
+  input.value = '';
+}
+
+function generateBotReply(userText){
+  const replies = [
+    "That's interesting!",
+    "Tell me more.",
+    "Haha, I like that.",
+    "Can you explain?",
+    "Wow, really?",
+    "I'm listening..."
+  ];
+  return replies[Math.floor(Math.random() * replies.length)];
+}
+</script>
+
+</body>
+</html>
